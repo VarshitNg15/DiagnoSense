@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction Result - DiagnoSense{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Prediction Result</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <h4 class="alert-heading">Predicted Disease</h4>
+                    <p class="mb-0">{{ prediction.disease }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Your Symptoms</h5>
+                    <p>{{ prediction.symptoms }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Confidence Level</h5>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: {{ prediction.confidence }}%">
+                            {{ prediction.confidence }}%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Recommended Actions</h5>
+                    <ul>
+                        <li>Schedule a consultation with your doctor</li>
+                        <li>Monitor your symptoms closely</li>
+                        <li>Take prescribed medications as directed</li>
+                        <li>Maintain a healthy lifestyle</li>
+                    </ul>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('predict') }}" class="btn btn-primary">New Prediction</a>
+                    <a href="{{ url_for('history') }}" class="btn btn-outline-primary">View History</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

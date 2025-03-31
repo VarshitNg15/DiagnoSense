@@ -1,0 +1,64 @@
+/* Custom styles for DiagnoSense */
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0,0,0,0.125);
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+.progress {
+    height: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.alert {
+    margin-bottom: 1rem;
+}
+
+/* Custom styles for prediction form */
+#symptomForm textarea {
+    min-height: 120px;
+}
+
+.symptom-btn {
+    margin: 2px;
+}
+
+/* Custom styles for history table */
+.table-responsive {
+    margin-top: 1rem;
+}
+
+/* Custom styles for doctor insights */
+.modal-header {
+    background-color: #f8f9fa;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+} 

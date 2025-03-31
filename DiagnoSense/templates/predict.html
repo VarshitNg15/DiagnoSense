@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Predict Disease - DiagnoSense{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Disease Prediction</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" id="symptomForm">
+                    <div class="mb-3">
+                        <label for="symptoms" class="form-label">Describe your symptoms</label>
+                        <textarea class="form-control" id="symptoms" name="symptoms" rows="4" 
+                            placeholder="Please describe your symptoms in detail. For example: 'I have been experiencing fever, headache, and body pain for the last 3 days...'" required></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Common Symptoms (Click to add)</label>
+                        <div class="d-flex flex-wrap gap-2" id="commonSymptoms">
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Fever</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Headache</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Cough</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Fatigue</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Body Pain</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Nausea</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Vomiting</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Diarrhea</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Chest Pain</button>
+                            <button type="button" class="btn btn-outline-primary symptom-btn">Shortness of Breath</button>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Predict Disease</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const symptomBtns = document.querySelectorAll('.symptom-btn');
+    const symptomsTextarea = document.getElementById('symptoms');
+
+    symptomBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const symptom = this.textContent;
+            const currentText = symptomsTextarea.value;
+            
+            if (currentText) {
+                symptomsTextarea.value = currentText + ', ' + symptom;
+            } else {
+                symptomsTextarea.value = symptom;
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - DiagnoSense{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center text-center">
+        <div class="col-md-8">
+            <h1 class="display-4 mb-4">Welcome to DiagnoSense</h1>
+            <p class="lead mb-4">Your intelligent healthcare companion for disease prediction and medical insights.</p>
+            
+            {% if session.get('user_id') %}
+                <div class="d-grid gap-3 col-md-6 mx-auto">
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>
+                    <a href="{{ url_for('predict') if session.get('role') == 'patient' else url_for('doctor_insights') }}" 
+                       class="btn btn-outline-primary btn-lg">
+                        {% if session.get('role') == 'patient' %}
+                            Predict Disease
+                        {% else %}
+                            View Patient Insights
+                        {% endif %}
+                    </a>
+                </div>
+            {% else %}
+                <div class="d-grid gap-3 col-md-6 mx-auto">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg">Register</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title">For Patients</h3>
+                    <p class="card-text">Get instant disease predictions based on your symptoms and access your medical history.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title">For Doctors</h3>
+                    <p class="card-text">Access patient records, provide medical insights, and track patient progress.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title">AI-Powered</h3>
+                    <p class="card-text">Advanced machine learning models for accurate disease prediction and analysis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

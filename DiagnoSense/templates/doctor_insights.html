@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Insights - DiagnoSense{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Patient Info -->
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Patient Insights</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Patient Information</h5>
+                            <p><strong>Name:</strong> {{ patient.name }}</p>
+                            <p><strong>Age:</strong> {{ patient.age }}</p>
+                            <p><strong>Contact:</strong> {{ patient.contact }}</p>
+                            <p><strong>Email:</strong> {{ patient.email }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Medical Status</h5>
+                            <p><strong>Last Visit:</strong> {{ patient.last_visit.strftime('%Y-%m-%d') }}</p>
+                            <p><strong>Status:</strong> <span class="badge {% if patient.status == 'Active' %}bg-success{% else %}bg-danger{% endif %}">{{ patient.status }}</span></p>
+                            <p><strong>Current Diagnosis:</strong> {{ patient.diagnosis or 'No diagnosis yet' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disease History -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Disease History</h5>
+                </div>
+                <div class="card-body">
+                    {% if history %}
+                        <div class="list-group">
+                            {% for record in history %}
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">{{ record.disease }}</h6>
+                                    <small>{{ record.diagnosis_date.strftime('%Y-%m-%d') }}</small>
+                                </div>
+                                <p class="mb-1"><strong>Symptoms:</strong> {{ record.symptoms }}</p>
+                                
+                                <!-- Doctor's Notes Form -->
+                                <form method="POST" class="mt-3">
+                                    <input type="hidden" name="history_id" value="{{ record.id }}">
+                                    <div class="mb-3">
+                                        <label class="form-label">Doctor's Notes</label>
+                                        <textarea class="form-control" name="notes" rows="2">{{ record.doctor_notes or '' }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm">Update Notes</button>
+                                </form>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No disease history found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Add any JavaScript functionality here
+</script>
+{% endblock %} 
